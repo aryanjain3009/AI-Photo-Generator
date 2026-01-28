@@ -1,34 +1,49 @@
-AI Photo Generator - AI Image Generation Platform
-APG is a powerful AI image platform that lets you generate stunning images and train custom AI models. Built with cutting-edge technology, it enables users to create unique AI-generated artwork and train personalized models on their own image datasets. Whether you're an artist looking to expand your creative possibilities or a developer building AI-powered image applications, 100xPhoto provides an intuitive interface and robust capabilities for AI image generation and model training.
+# AI Image Generation Platform
 
-Tech Stack
-Frontend: Next.js 14 (App Router), TypeScript, Tailwind CSS, Shadcn/UI
-Backend: Node.js with TypeScript
-Authentication: Clerk
-Containerization: Docker
-Package Management: Bun
-Monorepo Management: Turborepo# AI-Photo-Generator
+AI Image Generation Platform is a powerful AI image platform that lets you generate stunning images and train custom AI models. Built with cutting-edge technology, it enables users to create unique AI-generated artwork and train personalized models on their own image datasets. Whether you're an artist looking to expand your creative possibilities or a developer building AI-powered image applications, AI Image Generation Platform provides an intuitive interface and robust capabilities for AI image generation and model training.
 
-Project Structure
-Apps and Packages
-web: Next.js frontend application
-backend: Node.js backend service
-@repo/ui: Shared React component library
-@repo/typescript-config: Shared TypeScript configurations
-@repo/eslint-config: Shared ESLint configurations
-Getting Started
-Prerequisites
-Docker
-Bun (for local development)
-Clerk Account (for authentication)
+### Tech Stack
 
-Environment Setup
-Create .env files:
+- **Frontend**: Next.js 14 (App Router), TypeScript, Tailwind CSS, Shadcn/UI
+- **Backend**: Node.js with TypeScript
+- **Authentication**: Clerk
+- **Containerization**: Docker
+- **Package Management**: Bun
+- **Monorepo Management**: Turborepo
+
+### Project Structure
+
+### Apps and Packages
+
+- `web`: Next.js frontend application
+- `backend`: Node.js backend service
+- `@repo/ui`: Shared React component library
+- `@repo/typescript-config`: Shared TypeScript configurations
+- `@repo/eslint-config`: Shared ESLint configurations
+
+###  Getting Started
+
+### Prerequisites
+
+- Docker
+- Bun (for local development)
+- Clerk Account (for authentication)
+
+### Environment Setup
+
+1. Create `.env` files:
+
+```bash
 # apps/web/.env.local
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
 CLERK_SECRET_KEY=your_secret_key
 NEXT_PUBLIC_BACKEND_URL=http://localhost:8080
-Local Development
+```
+
+
+### Local Development
+
+```bash
 # Install dependencies
 bun install
 
@@ -37,13 +52,19 @@ bun run dev
 
 # Build all packages
 bun run build
-Features
-AI-powered image generation
-User authentication and authorization
-Image gallery with preview
-Download generated images
-Responsive design
-Development Commands
+```
+
+## Features
+
+- AI-powered image generation
+- User authentication and authorization
+- Image gallery with preview
+- Download generated images
+- Responsive design
+
+## Development Commands
+
+```bash
 # Run frontend only
 bun run start:web
 
@@ -52,8 +73,13 @@ bun run start:backend
 
 # Run both frontend and backend
 bun run dev
-Docker Setup
-Environment Variables Required
+```
+
+## Docker Setup
+
+### Environment Variables Required
+
+```bash
 # Frontend Environment Variables
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_Y2xlcmsuMTAweGRldnMuY29tJA
 NEXT_PUBLIC_BACKEND_URL=https://api.photoaiv2.100xdevs.com
@@ -62,7 +88,11 @@ CLERK_SECRET_KEY=your_clerk_secret_key
 
 # Backend Environment Variables
 DATABASE_URL=your_database_url
-Docker Commands
+```
+
+### Docker Commands
+
+```bash
 # Navigate to docker directory
 cd docker
 
@@ -82,7 +112,13 @@ docker run -p 3000:3000 \
 docker run -p 8080:8080 \
   -e DATABASE_URL=your_database_url \
   photoai-backend
-Project Structure
+
+```
+
+
+## Project Structure
+
+```
 .
 ├── apps
 │   ├── web/                 # Next.js frontend
@@ -95,9 +131,16 @@ Project Structure
 │   ├── Dockerfile.frontend
 │   └── Dockerfile.backend
 └── package.json
-Contributing
-Fork the repository
-Create your feature branch (git checkout -b feature/amazing-feature)
-Commit your changes (git commit -m 'Add some amazing feature')
-Push to the branch (git push origin feature/amazing-feature)
-Open a Pull Request
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details
