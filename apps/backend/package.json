@@ -1,0 +1,12 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "The Node.js backend service for PhotoAI - an AI-powered image generation platform.",
+  "license": "ISC",
+  "author": "Aryan Jain",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
