@@ -31,7 +31,7 @@ app.use(
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-  })
+  }),
 );
 app.use(express.json());
 
@@ -66,7 +66,7 @@ app.post("/ai/training", authMiddleware, async (req, res) => {
 
     const { request_id, response_url } = await falAiModel.trainModel(
       parsedBody.data.zipUrl,
-      parsedBody.data.name
+      parsedBody.data.name,
     );
 
     const data = await prismaClient.model.create({
@@ -131,7 +131,7 @@ app.post("/ai/generate", authMiddleware, async (req, res) => {
 
   const { request_id, response_url } = await falAiModel.generateImage(
     parsedBody.data.prompt,
-    model.tensorPath
+    model.tensorPath,
   );
 
   const data = await prismaClient.outputImages.create({
@@ -203,8 +203,8 @@ app.post("/pack/generate", authMiddleware, async (req, res) => {
 
   let requestIds: { request_id: string }[] = await Promise.all(
     prompts.map((prompt) =>
-      falAiModel.generateImage(prompt.prompt, model.tensorPath!)
-    )
+      falAiModel.generateImage(prompt.prompt, model.tensorPath!),
+    ),
   );
 
   const images = await prismaClient.outputImages.createManyAndReturn({
@@ -277,7 +277,9 @@ app.get("/models", authMiddleware, async (req, res) => {
 });
 
 app.post("/fal-ai/webhook/train", async (req, res) => {
-  console.log("====================Received training webhook====================");
+  console.log(
+    "====================Received training webhook====================",
+  );
   console.log("Received training webhook:", req.body);
   const requestId = req.body.request_id as string;
 
@@ -307,7 +309,7 @@ app.post("/fal-ai/webhook/train", async (req, res) => {
         trainingStatus: "Failed",
       },
     });
-    
+
     res.json({
       message: "Error recorded",
     });
@@ -319,16 +321,23 @@ app.post("/fal-ai/webhook/train", async (req, res) => {
     try {
       // Check if we have payload data directly in the webhook
       let loraUrl;
-      if (req.body.payload && req.body.payload.diffusers_lora_file && req.body.payload.diffusers_lora_file.url) {
+      if (
+        req.body.payload &&
+        req.body.payload.diffusers_lora_file &&
+        req.body.payload.diffusers_lora_file.url
+      ) {
         // Extract directly from webhook payload
         loraUrl = req.body.payload.diffusers_lora_file.url;
         console.log("Using lora URL from webhook payload:", loraUrl);
       } else {
         // Fetch result from fal.ai if not in payload
         console.log("Fetching result from fal.ai");
-        const result = await fal.queue.result("fal-ai/flux-lora-fast-training", {
-          requestId,
-        });
+        const result = await fal.queue.result(
+          "fal-ai/flux-lora-fast-training",
+          {
+            requestId,
+          },
+        );
         console.log("Fal.ai result:", result);
         const resultData = result.data as any;
         loraUrl = resultData.diffusers_lora_file.url;
@@ -376,7 +385,10 @@ app.post("/fal-ai/webhook/train", async (req, res) => {
         },
       });
 
-      console.log("Updated model and decremented credits for user:", model.userId);
+      console.log(
+        "Updated model and decremented credits for user:",
+        model.userId,
+      );
     } catch (error) {
       console.error("Error processing webhook:", error);
       await prismaClient.model.updateMany({

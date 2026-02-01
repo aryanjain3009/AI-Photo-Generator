@@ -21,7 +21,7 @@ AI Image Generation Platform is a powerful AI image platform that lets you gener
 - `@repo/typescript-config`: Shared TypeScript configurations
 - `@repo/eslint-config`: Shared ESLint configurations
 
-###  Getting Started
+### Getting Started
 
 ### Prerequisites
 
@@ -39,7 +39,6 @@ NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
 CLERK_SECRET_KEY=your_secret_key
 NEXT_PUBLIC_BACKEND_URL=http://localhost:8080
 ```
-
 
 ### Local Development
 
@@ -114,7 +113,6 @@ docker run -p 8080:8080 \
   photoai-backend
 
 ```
-
 
 ## Project Structure
 

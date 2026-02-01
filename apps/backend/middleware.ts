@@ -16,7 +16,7 @@ declare global {
 export async function authMiddleware(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const authHeader = req.headers["authorization"];
@@ -44,8 +44,7 @@ export async function authMiddleware(
 
     const decoded = jwt.verify(token, formattedKey, {
       algorithms: ["RS256"],
-      issuer:
-        process.env.CLERK_ISSUER || "https://clerk.100xdevs.com",
+      issuer: process.env.CLERK_ISSUER || "https://clerk.100xdevs.com",
       complete: true,
     });
 
@@ -63,7 +62,7 @@ export async function authMiddleware(
     // Fetch user details from Clerk
     const user = await clerkClient.users.getUser(userId);
     const primaryEmail = user.emailAddresses.find(
-      (email) => email.id === user.primaryEmailAddressId
+      (email) => email.id === user.primaryEmailAddressId,
     );
 
     if (!primaryEmail) {

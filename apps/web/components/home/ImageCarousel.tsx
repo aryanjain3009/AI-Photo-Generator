@@ -22,7 +22,7 @@ export function ImageCarousel() {
         stopOnInteraction: false,
         stopOnMouseEnter: true,
       }),
-    ]
+    ],
   );
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -30,15 +30,15 @@ export function ImageCarousel() {
 
   const scrollPrev = useCallback(
     () => emblaApi && emblaApi.scrollPrev(),
-    [emblaApi]
+    [emblaApi],
   );
   const scrollNext = useCallback(
     () => emblaApi && emblaApi.scrollNext(),
-    [emblaApi]
+    [emblaApi],
   );
   const scrollTo = useCallback(
     (index: number) => emblaApi && emblaApi.scrollTo(index),
-    [emblaApi]
+    [emblaApi],
   );
 
   const onSelect = useCallback(() => {
@@ -150,22 +150,22 @@ export function ImageCarousel() {
           <div className="flex gap-3">
             {scrollSnaps.map((_, i) => (
               <motion.button
-          key={i}
-          className="group relative"
-          onClick={() => scrollTo(i)}
+                key={i}
+                className="group relative"
+                onClick={() => scrollTo(i)}
               >
-          <div className="w-12 h-1.5 rounded-full bg-neutral-200 overflow-hidden">
-            {i === selectedIndex && (
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"
-                layoutId="activeSlide"
-                transition={{
-            type: "spring",
-            bounce: 0.2,
-                }}
-              />
-            )}
-          </div>
+                <div className="w-12 h-1.5 rounded-full bg-neutral-200 overflow-hidden">
+                  {i === selectedIndex && (
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"
+                      layoutId="activeSlide"
+                      transition={{
+                        type: "spring",
+                        bounce: 0.2,
+                      }}
+                    />
+                  )}
+                </div>
               </motion.button>
             ))}
           </div>

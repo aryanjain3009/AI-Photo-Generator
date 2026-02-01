@@ -16,7 +16,7 @@ export const useTransactions = () => {
     if (!token) return;
 
     try {
-      const response = await axios.get(`${BACKEND_URL}/payment/transactions`,{
+      const response = await axios.get(`${BACKEND_URL}/payment/transactions`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

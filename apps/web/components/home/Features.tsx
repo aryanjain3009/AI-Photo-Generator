@@ -51,12 +51,12 @@ export function Features() {
               {feature.icon}
             </div>
           </div>
-            <h3 className="text-xl font-semibold mb-2 dark:bg-gradient-to-r dark:from-white dark:to-neutral-300 bg-gradient-to-r from-neutral-900 to-neutral-700 bg-clip-text text-transparent">
+          <h3 className="text-xl font-semibold mb-2 dark:bg-gradient-to-r dark:from-white dark:to-neutral-300 bg-gradient-to-r from-neutral-900 to-neutral-700 bg-clip-text text-transparent">
             {feature.title}
-            </h3>
+          </h3>
           <p className="text-muted-foreground">{feature.description}</p>
         </motion.div>
       ))}
     </motion.div>
   );
-} 
+}

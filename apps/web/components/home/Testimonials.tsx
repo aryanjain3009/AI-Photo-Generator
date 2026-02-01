@@ -35,7 +35,9 @@ export function Testimonials() {
               </div>
             </div>
             <Star className="absolute top-4 right-4 text-yellow-500 w-6 h-6" />
-            <p className="text-accent-foreground/60 mb-4 mt-6">{testimonial.text}</p>
+            <p className="text-accent-foreground/60 mb-4 mt-6">
+              {testimonial.text}
+            </p>
             <div>
               <p className="font-semibold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
                 {testimonial.author}

@@ -31,8 +31,8 @@ const razorpay = new Razorpay({
 
 // Define plan prices (in rupees)
 export const PLAN_PRICES = {
-  basic: 4000, 
-  premium: 8000, 
+  basic: 4000,
+  premium: 8000,
 } as const;
 
 // Define credit amounts per plan
@@ -48,7 +48,7 @@ export async function createTransactionRecord(
   paymentId: string,
   orderId: string,
   plan: PlanType,
-  status: "PENDING" | "SUCCESS" | "FAILED" = "PENDING"
+  status: "PENDING" | "SUCCESS" | "FAILED" = "PENDING",
 ) {
   try {
     return await withRetry(() =>
@@ -61,9 +61,8 @@ export async function createTransactionRecord(
           orderId,
           plan,
           status,
-          
         },
-      })
+      }),
     );
   } catch (error) {
     console.error("Transaction creation error:", error);
@@ -74,7 +73,7 @@ export async function createTransactionRecord(
 export async function createStripeSession(
   userId: string,
   plan: "basic" | "premium",
-  email: string
+  email: string,
 ) {
   try {
     if (!stripe) {
@@ -99,8 +98,8 @@ export async function createStripeSession(
         },
       ],
       mode: "payment",
-      success_url: `${process.env.FRONTEND_URL}/payment/success?session_id={CHECKOUT_SESSION_ID}&token=${Buffer.from(JSON.stringify({timestamp: Date.now(), orderId: '{CHECKOUT_SESSION_ID}'})).toString('base64')}`,
-      cancel_url: `${process.env.FRONTEND_URL}/payment/cancel?session_id={CHECKOUT_SESSION_ID}&token=${Buffer.from(JSON.stringify({timestamp: Date.now(), orderId: '{CHECKOUT_SESSION_ID}'})).toString('base64')}`,
+      success_url: `${process.env.FRONTEND_URL}/payment/success?session_id={CHECKOUT_SESSION_ID}&token=${Buffer.from(JSON.stringify({ timestamp: Date.now(), orderId: "{CHECKOUT_SESSION_ID}" })).toString("base64")}`,
+      cancel_url: `${process.env.FRONTEND_URL}/payment/cancel?session_id={CHECKOUT_SESSION_ID}&token=${Buffer.from(JSON.stringify({ timestamp: Date.now(), orderId: "{CHECKOUT_SESSION_ID}" })).toString("base64")}`,
       customer_email: email,
       metadata: {
         userId,
@@ -115,7 +114,7 @@ export async function createStripeSession(
       session.payment_intent as string,
       session.id,
       plan,
-      "PENDING"
+      "PENDING",
     );
 
     return session;
@@ -134,7 +133,7 @@ export async function getStripeSession(sessionId: string) {
 
 export async function createRazorpayOrder(
   userId: string,
-  plan: keyof typeof PLAN_PRICES
+  plan: keyof typeof PLAN_PRICES,
 ) {
   try {
     const amount = PLAN_PRICES[plan];
@@ -164,7 +163,7 @@ export async function createRazorpayOrder(
       "",
       (order as any).id,
       plan,
-      "PENDING"
+      "PENDING",
     );
 
     return {
@@ -295,7 +294,7 @@ export const verifyRazorpaySignature = async ({
 async function withRetry<T>(
   operation: () => Promise<T>,
   retries = 3,
-  delay = 1000
+  delay = 1000,
 ): Promise<T> {
   try {
     return await operation();
@@ -326,7 +325,7 @@ export async function addCreditsForPlan(userId: string, plan: PlanType) {
           userId,
           amount: credits,
         },
-      })
+      }),
     );
   } catch (error) {
     console.error("Credit addition error:", error);
@@ -339,7 +338,7 @@ export async function createSubscriptionRecord(
   plan: PlanType,
   paymentId: string,
   orderId: string,
-  isAnnual: boolean = false
+  isAnnual: boolean = false,
 ) {
   try {
     return await withRetry(() =>
@@ -363,7 +362,7 @@ export async function createSubscriptionRecord(
 
         await addCreditsForPlan(userId, plan);
         return subscription;
-      })
+      }),
     );
   } catch (error) {
     console.error("Subscription creation error:", error);

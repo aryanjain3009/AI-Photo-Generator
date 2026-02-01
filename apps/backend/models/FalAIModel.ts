@@ -13,7 +13,7 @@ export class FalAIModel {
           loras: [{ path: tensorPath, scale: 1 }],
         },
         webhookUrl: `${process.env.WEBHOOK_BASE_URL}/fal-ai/webhook/image`,
-      }
+      },
     );
 
     return { request_id, response_url };
@@ -26,7 +26,7 @@ export class FalAIModel {
       const response = await fetch(zipUrl, { method: "HEAD" });
       if (!response.ok) {
         console.error(
-          `ZIP URL not accessible: ${zipUrl}, status: ${response.status}`
+          `ZIP URL not accessible: ${zipUrl}, status: ${response.status}`,
         );
         throw new Error(`ZIP URL not accessible: ${response.status}`);
       }
@@ -43,7 +43,7 @@ export class FalAIModel {
           trigger_word: triggerWord,
         },
         webhookUrl: `${process.env.WEBHOOK_BASE_URL}/fal-ai/webhook/train`,
-      }
+      },
     );
 
     console.log("Model training submitted:", request_id);

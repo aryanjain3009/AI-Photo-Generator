@@ -31,7 +31,9 @@ export function StatsSection() {
             <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
               {stat.value}
             </div>
-            <p className="text-muted-foreground text-sm md:text-base">{stat.label}</p>
+            <p className="text-muted-foreground text-sm md:text-base">
+              {stat.label}
+            </p>
           </motion.div>
         ))}
       </div>

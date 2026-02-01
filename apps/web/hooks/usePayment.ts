@@ -17,7 +17,11 @@ export function usePayment() {
   const { toast } = useToast();
   const { getToken } = useAuth();
 
-  const handlePayment = async (plan: "basic" | "premium", p0: boolean, p1: string) => {
+  const handlePayment = async (
+    plan: "basic" | "premium",
+    p0: boolean,
+    p1: string,
+  ) => {
     try {
       setIsLoading(true);
       const token = await getToken();

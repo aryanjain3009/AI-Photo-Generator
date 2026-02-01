@@ -56,7 +56,7 @@ router.post(
           const session = await createStripeSession(
             userId,
             plan as "basic" | "premium",
-            userEmail
+            userEmail,
           );
           console.log("Stripe session created:", session);
           res.json({ sessionId: session.id });
@@ -103,7 +103,7 @@ router.post(
       });
       return;
     }
-  }
+  },
 );
 
 router.post(
@@ -174,7 +174,7 @@ router.post(
       });
       return;
     }
-  }
+  },
 );
 
 router.post(
@@ -238,7 +238,7 @@ router.post(
           plan as PlanType,
           razorpay_payment_id,
           razorpay_order_id,
-          isAnnual
+          isAnnual,
         );
 
         // Get updated credits
@@ -274,7 +274,7 @@ router.post(
         details: error instanceof Error ? error.message : "Unknown error",
       });
     }
-  }
+  },
 );
 
 router.get(
@@ -303,7 +303,7 @@ router.get(
       res.status(500).json({ message: "Error fetching subscription status" });
       return;
     }
-  }
+  },
 );
 
 router.get(
@@ -328,7 +328,7 @@ router.get(
       res.status(500).json({ message: "Error fetching credits" });
       return;
     }
-  }
+  },
 );
 
 // Add this route to get user credits
@@ -365,7 +365,7 @@ router.get(
       });
       return;
     }
-  }
+  },
 );
 
 // Add Stripe webhook handler
@@ -381,7 +381,7 @@ router.post(
       const event = stripe.webhooks.constructEvent(
         req.body,
         sig,
-        process.env.STRIPE_WEBHOOK_SECRET!
+        process.env.STRIPE_WEBHOOK_SECRET!,
       );
 
       console.log("Webhook event received:", event.type);
@@ -406,7 +406,7 @@ router.post(
             userId,
             plan,
             session.payment_intent as string,
-            session.id
+            session.id,
           );
 
           console.log("Successfully processed payment and added credits");
@@ -420,10 +420,10 @@ router.post(
       res
         .status(400)
         .send(
-          `Webhook Error: ${error instanceof Error ? error.message : "Unknown error"}`
+          `Webhook Error: ${error instanceof Error ? error.message : "Unknown error"}`,
         );
     }
-  }
+  },
 );
 
 // Add this new verification endpoint

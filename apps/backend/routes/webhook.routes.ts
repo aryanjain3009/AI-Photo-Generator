@@ -13,7 +13,7 @@ router.post("/clerk", async (req, res) => {
 
   if (!SIGNING_SECRET) {
     throw new Error(
-      "Error: Please add SIGNING_SECRET from Clerk Dashboard to .env"
+      "Error: Please add SIGNING_SECRET from Clerk Dashboard to .env",
     );
   }
 
